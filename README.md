@@ -1,1 +1,1 @@
-# Domain-Driven-Sample-in-Java
+# Domain Driven Sample in Java

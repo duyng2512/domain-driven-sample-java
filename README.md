@@ -1,8 +1,3 @@
-@settings {
-  font-family: "Lucida Console", "Courier New", monospace;
-  padding: 3em;
-}
-
 # Domain Driven Sample in Java
 - This repository is a short summary of the content from the book [Practical Domain-Driven Design in Enterprise Java (by Vijay Nair](https://www.amazon.com/Practical-Domain-Driven-Design-Enterprise-Java/dp/1484245423))
 
@@ -17,7 +12,8 @@
 - This section provide all domain driven design core concepts:
 
 #### 1. Definition:
-> Domain-Driven Design is an approach to software development that centers the development on programming a domain model that has a rich understanding of the processes and rules of a domain. The name comes from a 2003 book by Eric Evans that describes the approach through a catalog of patterns. Since then a community of practitioners have further developed the ideas, spawning various other books and training courses. The approach is particularly suited to complex domains, where a lot of often-messy logic needs to be organized.[[1]](https://martinfowler.com/bliki/DomainDrivenDesign.html)
+> Domain-Driven Design is an approach to software development that centers the development on programming a domain model that has a rich understanding of the processes and rules of a domain. The name comes from a 2003 book by Eric Evans that describes the approach through a catalog of patterns. Since then a community of practitioners have further developed the ideas, spawning various other books and training courses. The approach is particularly suited to complex domains, where a lot of often-messy logic needs to be organized.
+[[1]](https://martinfowler.com/bliki/DomainDrivenDesign.htmlhttps://martinfowler.com/bliki/DomainDrivenDesign.html)
 
 
 #### 2. Core concepts

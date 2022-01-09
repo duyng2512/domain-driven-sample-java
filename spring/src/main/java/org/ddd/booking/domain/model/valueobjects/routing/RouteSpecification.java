@@ -1,6 +1,9 @@
 package org.ddd.booking.domain.model.valueobjects.routing;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.ddd.booking.domain.model.entities.Location;
 
 import javax.persistence.*;
@@ -9,6 +12,9 @@ import java.util.Date;
 
 @Embeddable
 @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RouteSpecification {
     private static final long serialVersionId = 1L;
 

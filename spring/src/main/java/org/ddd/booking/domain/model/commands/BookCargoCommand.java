@@ -1,16 +1,14 @@
 package org.ddd.booking.domain.model.commands;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
+@Builder
+@AllArgsConstructor
 public class BookCargoCommand {
 
     private String bookingId;

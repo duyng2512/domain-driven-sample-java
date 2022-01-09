@@ -1,6 +1,7 @@
 package org.ddd.booking.domain.model.valueobjects;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.ddd.booking.domain.model.entities.Location;
@@ -11,6 +12,8 @@ import java.util.Date;
 
 @Entity
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Leg {
     private static final Long serialVersionUID = 1L;
 

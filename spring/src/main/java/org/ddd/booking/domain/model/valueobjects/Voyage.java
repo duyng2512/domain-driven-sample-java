@@ -23,5 +23,4 @@ public class Voyage {
     You would do that when the responsibility of creating/updating the referenced
         column isn't in the current entity, but in another entity.
      */
-
 }

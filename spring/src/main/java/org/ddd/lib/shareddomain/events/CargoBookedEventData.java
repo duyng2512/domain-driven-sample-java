@@ -1,8 +1,7 @@
-package org.ddd.booking.shareddomain.events;
+package org.ddd.lib.shareddomain.events;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor

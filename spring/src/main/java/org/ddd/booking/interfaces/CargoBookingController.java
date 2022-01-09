@@ -22,13 +22,13 @@ public class CargoBookingController {
 
     @PostMapping
     @ResponseBody
-    public BookingId bookCargo(@RequestBody BookCargoResource resource){
+    public BookingId bookCargo(@RequestBody BookCargoResource resource) {
         return commandService.bookCargo(BookCargoCommandDTOAssembler.toCommandFromDTO(resource));
     }
 
     @GetMapping("/find-cargo")
     @ResponseBody
-    public Cargo findByBookingId(@RequestParam("bookingId") String bookingId){
+    public Cargo findByBookingId(@RequestParam("bookingId") String bookingId) {
         return queryService.find(bookingId);
     } // find-cargo?bookingId="1234"
 

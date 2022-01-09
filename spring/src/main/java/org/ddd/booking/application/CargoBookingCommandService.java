@@ -25,9 +25,9 @@ public class CargoBookingCommandService {
         this.externalCargoRoutingService = externalCargoRoutingService;
     }
 
-    public BookingId bookCargo(BookCargoCommand bookCargoCommand){
+    public BookingId bookCargo(BookCargoCommand bookCargoCommand) {
         String id = bookCargoCommand.getBookingId();
-        if (id == null){
+        if (id == null) {
             id = UUID.randomUUID().toString().toUpperCase(Locale.ROOT);
             log.info("ID Random is " + id);
             bookCargoCommand.setBookingId(id);
@@ -37,7 +37,7 @@ public class CargoBookingCommandService {
         return new BookingId(id);
     }
 
-    public void routeCargo(RouteCargoCommand routeCargoCommand){
+    public void routeCargo(RouteCargoCommand routeCargoCommand) {
         Cargo cargo = cargoRepository.findByBookingId(new BookingId(routeCargoCommand.getCargoBookingId()));
         CargoItinerary itinerary = CargoItinerary.EMPTY_ITINERARY();
         routeCargoCommand.setCargoItinerary(itinerary);

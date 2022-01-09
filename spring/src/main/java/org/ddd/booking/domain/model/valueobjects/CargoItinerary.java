@@ -21,7 +21,7 @@ public class CargoItinerary {
     @OrderBy("loadTime")
     private List<Leg> legs = Collections.emptyList();
 
-    public static CargoItinerary EMPTY_ITINERARY (){
+    public static CargoItinerary EMPTY_ITINERARY() {
         return new CargoItinerary();
     }
 

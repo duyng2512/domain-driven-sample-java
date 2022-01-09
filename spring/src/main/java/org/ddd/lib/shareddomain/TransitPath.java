@@ -1,7 +1,5 @@
-package org.ddd.booking.shareddomain;
+package org.ddd.lib.shareddomain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlRootElement;

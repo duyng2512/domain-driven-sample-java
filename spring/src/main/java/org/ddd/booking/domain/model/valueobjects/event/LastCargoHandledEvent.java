@@ -22,7 +22,9 @@ public class LastCargoHandledEvent {
     private String handlingEventLocation;
 
     public static final LastCargoHandledEvent EMPTY = new LastCargoHandledEvent();
-    public LastCargoHandledEvent() {}
+
+    public LastCargoHandledEvent() {
+    }
 
     public LastCargoHandledEvent(Integer handlingEventId, String handlingEventType,
                                  String handlingEventVoyage, String handlingEventLocation) {

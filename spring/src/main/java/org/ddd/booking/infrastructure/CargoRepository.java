@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface CargoRepository extends JpaRepository<Cargo, Long> {
     Cargo findByBookingId(BookingId bookingId);
+
     List<BookingId> findAllBookingIds();
+
     List<Cargo> findAll();
 }

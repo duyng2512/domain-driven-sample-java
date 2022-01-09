@@ -6,7 +6,7 @@ import java.sql.Date;
 
 public class BookCargoCommandDTOAssembler {
 
-    public static BookCargoCommand toCommandFromDTO(BookCargoResource resource){
+    public static BookCargoCommand toCommandFromDTO(BookCargoResource resource) {
         return BookCargoCommand.builder()
                                .bookingAmount(resource.getBookingAmount())
                                .destArrivalDeadline(Date.valueOf(resource.getDestArrivalDeadline()))

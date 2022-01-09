@@ -16,15 +16,15 @@ public class CargoBookingQueryService {
         this.cargoRepository = cargoRepository;
     }
 
-    public List<Cargo> findAll(){
+    public List<Cargo> findAll() {
         return cargoRepository.findAll();
     }
 
-    public List<BookingId> findAllBookingIds(){
+    public List<BookingId> findAllBookingIds() {
         return cargoRepository.findAllBookingIds();
     }
 
-    public Cargo find(String bookingId){
+    public Cargo find(String bookingId) {
         return cargoRepository.findByBookingId(new BookingId(bookingId));
     }
 }

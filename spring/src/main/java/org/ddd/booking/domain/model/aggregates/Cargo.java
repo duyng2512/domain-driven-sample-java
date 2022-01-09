@@ -12,20 +12,20 @@ import org.ddd.booking.domain.model.valueobjects.CargoItinerary;
 import org.ddd.booking.domain.model.valueobjects.Delivery;
 import org.ddd.booking.domain.model.valueobjects.event.LastCargoHandledEvent;
 import org.ddd.booking.domain.model.valueobjects.routing.RouteSpecification;
-import org.ddd.booking.shareddomain.events.CargoBookedEvent;
-import org.ddd.booking.shareddomain.events.CargoBookedEventData;
-import org.ddd.booking.shareddomain.events.CargoRoutedEvent;
+import org.ddd.lib.shareddomain.events.CargoBookedEvent;
+import org.ddd.lib.shareddomain.events.CargoBookedEventData;
+import org.ddd.lib.shareddomain.events.CargoRoutedEvent;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
 
 @Entity
 @NamedQueries({@NamedQuery(name = "Cargo.findAll",
-                           query = "select c from Cargo c"),
-               @NamedQuery(name = "Cargo.findByBookingId",
-                           query = "select c from Cargo c where c.bookingId = :bookingId"),
-               @NamedQuery(name = "Cargo.findAllBookingIds",
-                           query = "Select c.bookingId from Cargo c") })
+        query = "select c from Cargo c"),
+        @NamedQuery(name = "Cargo.findByBookingId",
+                query = "select c from Cargo c where c.bookingId = :bookingId"),
+        @NamedQuery(name = "Cargo.findAllBookingIds",
+                query = "Select c.bookingId from Cargo c")})
 @NoArgsConstructor
 @Setter
 @Getter
@@ -53,7 +53,7 @@ public class Cargo extends AbstractAggregateRoot<Cargo> {
     @Embedded
     private Delivery delivery;
 
-    public Cargo(BookCargoCommand command){
+    public Cargo(BookCargoCommand command) {
         this.bookingId = new BookingId(command.getBookingId());
         this.routeSpecification = RouteSpecification.builder()
                                                     .origin(new Location(command.getOriginLocation()))
@@ -66,7 +66,7 @@ public class Cargo extends AbstractAggregateRoot<Cargo> {
 
         /* Emit Events */
         addDomainEvent(new CargoBookedEvent(
-                        new CargoBookedEventData(bookingId.getBookingId())));
+                new CargoBookedEventData(bookingId.getBookingId())));
     }
 
     public void assignToRoute(RouteCargoCommand routeCargoCommand) {
@@ -75,14 +75,14 @@ public class Cargo extends AbstractAggregateRoot<Cargo> {
 
         /* Emit Events */
         addDomainEvent(new CargoRoutedEvent(
-                        new CargoBookedEventData(bookingId.getBookingId())));
+                new CargoBookedEventData(bookingId.getBookingId())));
     }
 
     public void deriveDeliveryProgress(LastCargoHandledEvent lastCargoHandledEvent) {
         this.delivery = Delivery.derivedFrom(getRouteSpecification(), getItinerary(), lastCargoHandledEvent);
     }
 
-    public void addDomainEvent(Object event){
+    public void addDomainEvent(Object event) {
         registerEvent(event);
     }
 

@@ -1,4 +1,4 @@
-package org.ddd.booking.shareddomain.events;
+package org.ddd.lib.shareddomain.events;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

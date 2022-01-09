@@ -10,6 +10,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Data
 public class BookingId implements Serializable {
-    @Column(name="booking_id")
+    @Column(name = "booking_id")
     private String bookingId;
 }

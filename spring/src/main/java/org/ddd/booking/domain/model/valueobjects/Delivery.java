@@ -21,7 +21,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class Delivery {
-    public static  final Date ETA_UNKNOWN = null;
+    public static final Date ETA_UNKNOWN = null;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "routing_status")
@@ -47,54 +47,58 @@ public class Delivery {
 
     /* Business Logic */
     public Delivery(LastCargoHandledEvent lastEvent, CargoItinerary itinerary,
-                    RouteSpecification routeSpecification){
-       this.lastEvent = lastEvent;
-       this.routingStatus = calculateRoutingStatus(itinerary);
-       this.transportStatus = calculateTransportStatus();
-       this.lastKnownLocation = calculateLastKnownLocation();
-       this.currentVoyage = calculateCurrentVoyage();
+                    RouteSpecification routeSpecification) {
+        this.lastEvent = lastEvent;
+        this.routingStatus = calculateRoutingStatus(itinerary);
+        this.transportStatus = calculateTransportStatus();
+        this.lastKnownLocation = calculateLastKnownLocation();
+        this.currentVoyage = calculateCurrentVoyage();
     }
 
-    public Delivery updateOnRouting(RouteSpecification routeSpecification, CargoItinerary itinerary){
+    public Delivery updateOnRouting(RouteSpecification routeSpecification, CargoItinerary itinerary) {
         return new Delivery(this.lastEvent, itinerary, routeSpecification);
     }
 
     public static Delivery derivedFrom(RouteSpecification routeSpecification, CargoItinerary itinerary,
-                                       LastCargoHandledEvent lastEvent){
+                                       LastCargoHandledEvent lastEvent) {
         return new Delivery(lastEvent, itinerary, routeSpecification);
     }
 
-    private RoutingStatus calculateRoutingStatus(CargoItinerary itinerary){
-        if (itinerary == null || itinerary.equals(CargoItinerary.EMPTY_ITINERARY())){
+    private RoutingStatus calculateRoutingStatus(CargoItinerary itinerary) {
+        if (itinerary == null || itinerary.equals(CargoItinerary.EMPTY_ITINERARY())) {
             return RoutingStatus.NOT_ROUTED;
         } else {
             return RoutingStatus.ROUTED;
         }
     }
 
-    private TransportStatus calculateTransportStatus(){
+    private TransportStatus calculateTransportStatus() {
         log.info("Transport Status for last event " + lastEvent.getHandlingEventType());
         if (lastEvent.getHandlingEventType() == null) return TransportStatus.NOT_RECEIVED;
 
-        switch (lastEvent.getHandlingEventType()){
-            case "LOAD": return TransportStatus.ONBOARD_CARRIER;
+        switch (lastEvent.getHandlingEventType()) {
+            case "LOAD":
+                return TransportStatus.ONBOARD_CARRIER;
             case "UNLOAD":
             case "RECEIVE":
-            case "CUSTOMS": return TransportStatus.IN_PORT;
-            case "CLAIM": return TransportStatus.CLAIMED;
-            default: return TransportStatus.UNKNOWN;
+            case "CUSTOMS":
+                return TransportStatus.IN_PORT;
+            case "CLAIM":
+                return TransportStatus.CLAIMED;
+            default:
+                return TransportStatus.UNKNOWN;
         }
     }
 
-    private Location calculateLastKnownLocation(){
-        if (lastEvent != null){
+    private Location calculateLastKnownLocation() {
+        if (lastEvent != null) {
             return new Location(lastEvent.getHandlingEventLocation());
         }
         return null;
     }
 
-    private Voyage calculateCurrentVoyage(){
-        if (this.transportStatus.equals(TransportStatus.ONBOARD_CARRIER) && lastEvent != null){
+    private Voyage calculateCurrentVoyage() {
+        if (this.transportStatus.equals(TransportStatus.ONBOARD_CARRIER) && lastEvent != null) {
             return Voyage.builder()
                          .voyageNumber(lastEvent.getHandlingEventVoyage())
                          .build();

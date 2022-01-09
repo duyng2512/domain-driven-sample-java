@@ -5,8 +5,8 @@ import org.ddd.booking.domain.model.valueobjects.CargoItinerary;
 import org.ddd.booking.domain.model.valueobjects.Leg;
 import org.ddd.booking.domain.model.valueobjects.Voyage;
 import org.ddd.booking.domain.model.valueobjects.routing.RouteSpecification;
-import org.ddd.booking.shareddomain.TransitEdge;
-import org.ddd.booking.shareddomain.TransitPath;
+import org.ddd.lib.shareddomain.TransitEdge;
+import org.ddd.lib.shareddomain.TransitPath;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,7 +19,7 @@ import java.util.Map;
 @Service
 public class ExternalCargoRoutingService {
 
-    public CargoItinerary fetchRouteForSpecification(RouteSpecification specification){
+    public CargoItinerary fetchRouteForSpecification(RouteSpecification specification) {
         RestTemplate restTemplate = new RestTemplate();
         Map<String, Object> params = new HashMap<>();
 
@@ -30,7 +30,7 @@ public class ExternalCargoRoutingService {
         TransitPath transitPath = restTemplate.getForObject("TEST", TransitPath.class, params);
         assert transitPath != null;
         List<Leg> legs = new ArrayList<>(transitPath.getTransitEdges().size());
-        for (TransitEdge edge : transitPath.getTransitEdges()){
+        for (TransitEdge edge : transitPath.getTransitEdges()) {
             legs.add(toLeg(edge));
         }
         return new CargoItinerary(legs);

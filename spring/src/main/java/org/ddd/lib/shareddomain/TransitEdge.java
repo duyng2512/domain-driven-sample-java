@@ -1,4 +1,4 @@
-package org.ddd.booking.shareddomain;
+package org.ddd.lib.shareddomain;
 
 import lombok.*;
 

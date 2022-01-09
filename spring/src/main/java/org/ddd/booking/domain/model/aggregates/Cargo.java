@@ -3,6 +3,7 @@ package org.ddd.booking.domain.model.aggregates;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.ddd.booking.domain.model.commands.BookCargoCommand;
 import org.ddd.booking.domain.model.commands.RouteCargoCommand;
 import org.ddd.booking.domain.model.entities.Location;
@@ -28,6 +29,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class Cargo extends AbstractAggregateRoot<Cargo> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

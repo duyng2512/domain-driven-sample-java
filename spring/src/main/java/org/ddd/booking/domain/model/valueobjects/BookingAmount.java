@@ -12,6 +12,6 @@ import javax.persistence.Embeddable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingAmount {
-    @Column(name = "booking_amount", unique = true, updatable = false)
+    @Column(name = "booking_amount", unique = false, updatable = false)
     private Integer bookingAmount;
 }

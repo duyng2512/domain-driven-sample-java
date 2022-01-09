@@ -26,12 +26,15 @@ public class CargoBookingCommandService {
     }
 
     public BookingId bookCargo(BookCargoCommand bookCargoCommand){
-        String random = UUID.randomUUID().toString().toUpperCase(Locale.ROOT);
-        log.info("Random is " + random);
-        bookCargoCommand.setBookingId(random);
+        String id = bookCargoCommand.getBookingId();
+        if (id == null){
+            id = UUID.randomUUID().toString().toUpperCase(Locale.ROOT);
+            log.info("ID Random is " + id);
+            bookCargoCommand.setBookingId(id);
+        }
         Cargo cargo = new Cargo(bookCargoCommand);
         cargoRepository.save(cargo);
-        return new BookingId(random);
+        return new BookingId(id);
     }
 
     public void routeCargo(RouteCargoCommand routeCargoCommand){
